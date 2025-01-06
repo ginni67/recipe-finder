@@ -1,0 +1,382 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f4;
+  transition: background-color 0.3s ease;
+}
+
+/* Header styles */
+header {
+  background-color: #ff6f61;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+#search-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+}
+
+#search-bar {
+  padding: 12px;
+  width: 300px;
+  /* border: 1px solid #ccc;
+  border-radius: 7px; */
+  font-size: 1rem;
+}
+
+#search-btn {
+  padding: 12px 25px;
+  background-color: #f5b7b1;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+#search-btn:hover {
+  background-color: #ea968b;
+}
+
+#filters {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#category-filter, #cuisine-filter {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #e1d2d2;
+  background-color: #f1e4e4;
+  transition: border-color 0.2s ease;
+}
+
+#category-filter:focus, #cuisine-filter:focus {
+  border-color: #ff6f61;
+}
+
+/* Pagination button styling */
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination-buttons button {
+  padding: 8px 20px;
+  background-color: #ff6f61;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-buttons button:hover {
+  background-color: #ff4d3f;
+}
+
+.pagination-buttons button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#dark-mode-toggle {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #d9534f;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+#dark-mode-toggle:hover {
+  background-color: #c9302c;
+}
+
+/* Spinner styles */
+#loading-spinner {
+  display: none;
+  margin: 20px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #ff6f61;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Recipe container styles */
+#recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+  padding: 0 10px;
+}
+
+.recipe-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.recipe-card.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.recipe-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover; /* Ensure responsiveness */
+}
+
+.recipe-card h3 {
+  margin: 15px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.recipe-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #ff6f61;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.recipe-card a:hover {
+  background-color: #ff4d3f;
+}
+
+.save-btn {
+  padding: 8px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+}
+
+#modal-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+#modal-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#modal-instructions {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+header.dark-mode {
+  background-color: #333;
+}
+
+header h1, #search-btn, #dark-mode-toggle {
+  color: #fff;
+}
+
+#search-container {
+  background-color: #ff6f61; /* Default background color */
+}
+
+#filters {
+  background-color: #ff6f61; /* Default background color */
+}
+
+#category-filter, #cuisine-filter, #search-bar {
+  background-color: white;  /* Default background color */
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+body.dark-mode #search-container {
+  background-color: #333; /* Dark background when dark mode is active */
+}
+
+body.dark-mode #filters {
+  background-color: #222; /* Dark background for filters when dark mode is active */
+}
+
+body.dark-mode #category-filter, 
+body.dark-mode #cuisine-filter, 
+body.dark-mode #search-bar {
+  background-color: #333;  /* Dark background for input fields */
+  border: 1px solid #444;  /* Dark border for input fields */
+  color: white;  /* White text */
+}
+
+body.dark-mode #category-filter:focus, 
+body.dark-mode #cuisine-filter:focus, 
+body.dark-mode #search-bar:focus {
+  border-color: #ff6f61;  /* Highlight the border when focused in dark mode */
+}
+
+#recipe-container.dark-mode {
+  background-color: #222;
+}
+
+.recipe-card.dark-mode {
+  background-color: #333;
+  border-color: #444;
+  color: #fff;
+}
+
+.recipe-card a, .save-btn {
+  background-color: #ff6f61;
+}
+
+.save-btn {
+  background-color: #4caf50;
+}
+
+.modal-content.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+#modal-title {
+  color: #ff6f61;
+}
+
+/* General styling for the View Details button */
+.view-btn {
+  background-color: #6c757d; /* Neutral gray background */
+  color: white; /* White text */
+  border: none; /* Remove borders */
+  padding: 10px 15px; /* Padding for spacing */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size */
+  margin-top: 10px; /* Space above the button */
+  text-align: center; /* Center-align text */
+  display: inline-block; /* Ensure it's inline */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for the button */
+.view-btn:hover {
+  background-color: #5a6268; /* Slightly darker gray on hover */
+}
+
+/* Optional: Styling if you have dark mode */
+.dark-mode .view-btn {
+  background-color: #343a40; /* Darker background in dark mode */
+  color: #f8f9fa; /* Lighter text in dark mode */
+}
+
+.dark-mode .view-btn:hover {
+  background-color: #212529; /* Even darker hover in dark mode */
+}
+

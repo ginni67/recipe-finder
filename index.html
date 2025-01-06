@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Finder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Recipe Finder</h1>
+    <div id="search-container">
+      <input type="text" id="search-bar" placeholder="Search for a recipe...">
+      <button id="search-btn">Search</button>
+    </div>
+    <div id="filters">
+      <select id="category-filter">
+        <option value="">Select Category</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Beef">Beef</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Seafood">Seafood</option>
+      </select>
+      <select id="cuisine-filter">
+        <option value="">Select Cuisine</option>
+        <option value="Italian">Italian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Indian">Indian</option>
+        <option value="Mexican">Mexican</option>
+      </select>
+    </div>
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
+  </header>
+
+  <!-- Loading Spinner -->
+  <div id="loading-spinner"></div>
+
+  <main id="recipe-container"></main>
+
+  <!-- Pagination Section -->
+  <div id="pagination" class="pagination-buttons">
+    <button id="prev-btn" class="disabled">Previous</button>
+    <button id="next-btn">Next</button>
+  </div>
+
+  <!-- Recipe Modal -->
+  <div id="recipe-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <h2 id="modal-title"></h2>
+      <img id="modal-image" src="" alt="Recipe Image">
+      <p id="modal-instructions"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
